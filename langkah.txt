@@ -1,0 +1,20 @@
+unduh file
+buka di wireshark
+filter dengan 
+
+usb.transfer_type == 0x01 and frame.len == 35
+and !(usb.capdata == 00.00.00.00.00.00.00.00)
+
+kemudian export hasil filter
+gunakan perintah 
+tshark -r ./filter.pcapng -Y 'usb.capdata && usb.data_len == 8' -T fields -e usb.capdata | sed 's/../:&/g2' > fi
+
+setelah itu maka akan menjadi seperti ini
+
+kemudian gunakan tools usbkeyboard.py
+python usbkeyboard.py fi
+
+ketemulah flagnya
+
+kemudian kita bisa menggunakan tools usb keyboard parser yang didapat di dc
+
